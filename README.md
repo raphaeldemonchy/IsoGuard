@@ -4,13 +4,20 @@
   IsoGuard
 </h1>
 
-#### A minimal Markdown Editor desktop app built on top of [Electron](http://electron.atom.io).
+<h4 align="center">A minimal Markdown Editor desktop app built on top of [Electron](http://electron.atom.io). </h4>
 
-[![Gitter](https://badge.fury.io/js/electron-markdownify.svg)](https://badge.fury.io/js/electron-markdownify) [![](https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg)](https://gitter.im/amitmerchant1990/electron-markdownify) [![](https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg)](https://saythanks.io/to/bullredeyes@gmail.com) [![](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://www.paypal.me/AmitMerchant)
+<h3 align="center"> Table of content</h4>
 
-[Key Features](#key-features) • [How To Use](#how-to-use) • [Download](#download) • [Credits](#credits) • [Related](#related) • [License](#license)
+<p align="center">
+    <a href="#description">Description</a> •
+    <a href="#fonctionnalités">Fonctionnalités</a> •
+    <a href="#requirements">Requirements</a> •
+    <a href="#download">Download</a> •
+    <a href="#déploiement">Déploiement</a> •
+    <a href="#utilisation">Utilisation</a>
+</p>
 
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+
 
 ## Description
 
@@ -20,11 +27,11 @@
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
-*   I**solation total :**
-*   **Détection des comportement malveillants :**
-*   **Rapports d'analyse détaillés :**
-*   **Prise en charge de différents types de fichiers :**
-*   **Interface utilisateur intuitive :**
+*   **Isolation total :** Les fichiers sont exécutés dans un environnement isolé, sans impact sur le système hôte.
+*   **Détection des comportement malveillants :**  Analyse des interactions du fichier avec le système, telles que l'accès au réseau, la manipulation des fichiers, etc.
+*   **Rapports d'analyse détaillés :** Génération de rapports exhaustifs incluant les logs d'événements, les appels système et les comportements suspects.
+* **Prise en charge de différents types de fichiers** : Analyse de fichiers exécutables, documents et scripts.
+*   **Interface utilisateur intuitive :** Interface pour charger et gérer les fichiers, visualiser les résultats d'analyse et télécharger les rapports.
 
 ```
 # Clone this repository
@@ -51,7 +58,7 @@ You can [download](https://github.com/amitmerchant1990/electron-markdownify/rele
 
 You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
 
-## Déploiement
+## Deploiement
 
 Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at \<bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
 
