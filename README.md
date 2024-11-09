@@ -1,5 +1,10 @@
+<h1 align="center">
+  <br>
 ![Logo de la Sandbox](assets/logo.png)  
-IsoGuard   
+  <br>
+  IsoGuard
+  <br>
+</h1>
 
 #### A minimal Markdown Editor desktop app built on top of [Electron](http://electron.atom.io).
 
