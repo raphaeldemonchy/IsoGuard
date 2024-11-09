@@ -1,9 +1,7 @@
 <h1 align="center">
-  <br>
-![Logo de la Sandbox](assets/logo.png)  
+  <img src="assets/logo.png" alt="Logo de la Sandbox" width="200">
   <br>
   IsoGuard
-  <br>
 </h1>
 
 #### A minimal Markdown Editor desktop app built on top of [Electron](http://electron.atom.io).
