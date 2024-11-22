@@ -132,7 +132,6 @@
             |     graphique de la VM vers      |
             |     l'interface web)             |
             +-----------------------------------+
-
 ```
 
 ---
