@@ -1,0 +1,1 @@
+export { default } from "file:///home/uknown/Bureau/Capstone/V2/IsoGuard/IsoGUARDv3/Frontend/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
