@@ -1,5 +1,4 @@
 #include <libvirt/libvirt.h>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -84,16 +83,33 @@
 //     return 0;
 // }
 
-#include "CORE/core.hpp"
+// #include "CORE/core.hpp"
+#include "API/Server.hpp"
 #include <iostream>
 
 int main() {
     std::string xmlPath = "vm.xml";  // Chemin du fichier XML de configuration
-    std::string vmName = "test2";  // Nom de la VM (à remplacer dans le fichier XML)
+    std::string vmName = "test2";    // Nom de la VM (à remplacer dans le fichier XML)
+
+    int port = 8080;
+    // Création de l'objet Core qui gère la connexion à libvirt
+
+    // Démarrer le serveur
+    Server server(port);
+    server.start();
 
     // Appel à la méthode pour créer la VM
-    Core::createVM(xmlPath, vmName);
+    // core.createVM(xmlPath, vmName);
+
+    // Exemple d'utilisation des autres méthodes :
+    // Pour démarrer la VM
+    // core.startVM(vmName);
+
+    // Pour arrêter la VM
+    // core.shutdownVM(vmName);
+
+    // Pour supprimer la VM
+    // core.deleteVM(vmName);
 
     return 0;
 }
-

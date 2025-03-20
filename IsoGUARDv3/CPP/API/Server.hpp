@@ -2,6 +2,7 @@
 #define SERVER_HPP
 
 #include "httplib.h"
+#include "../CORE/core.hpp"
 #include <iostream>
 #include <string>
 
@@ -13,6 +14,7 @@ public:
 private:
     httplib::Server server;
     int port;
+    Core core;
 
     void setup_routes();
     void handle_create_vm(const httplib::Request& req, httplib::Response& res);

@@ -1,19 +1,24 @@
 # Définir les variables de compilation
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra
-LDFLAGS = -lvirt
+LDFLAGS = -lvirt -lpthread
 
 # Nom de l'exécutable
 TARGET = create_vm
 
+# Dossiers de sources
+SRC_DIR = .
+CORE_DIR = ./CORE
+API_DIR = ./API
+
 # Fichiers sources
-SRCS = main.cpp CORE/core.cpp
+SRCS = $(SRC_DIR)/main.cpp $(CORE_DIR)/core.cpp $(API_DIR)/Server.cpp
 
-# Dossiers d'inclusion
-INCLUDES =
+# Dossiers d'inclusion pour les en-têtes
+INCLUDES = -I$(CORE_DIR) -I$(API_DIR)
 
-# Dossiers de bibliothèques (ajuster si nécessaire)
-LIBS =
+# Bibliothèques à lier
+LIBS = -lvirt -lpthread
 
 # Règle par défaut : compilation de l'exécutable
 all: $(TARGET)
@@ -24,7 +29,7 @@ $(TARGET): $(SRCS)
 
 # Nettoyer les fichiers de compilation
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) *.o
 
 # Recompilation complète
 rebuild: clean all

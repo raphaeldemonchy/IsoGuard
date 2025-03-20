@@ -4,6 +4,22 @@
 #include <fstream>
 #include <sstream>
 
+// 🔹 Constructeur : connexion à libvirt
+Core::Core() {
+    // Ouverture de la connexion à libvirt
+    conn = virConnectOpen("qemu:///system");
+    if (!conn) {
+        std::cerr << "Erreur: Impossible de se connecter à libvirt\n";
+    }
+}
+
+// 🔹 Destructeur : fermeture de la connexion à libvirt
+Core::~Core() {
+    if (conn) {
+        virConnectClose(conn);
+    }
+}
+
 // 🔹 Charge le contenu du fichier XML et remplace les valeurs dynamiques
 std::string Core::loadXMLConfig(const std::string& xmlPath, const std::string& vmName) {
     std::ifstream file(xmlPath);
@@ -33,16 +49,14 @@ std::string Core::loadXMLConfig(const std::string& xmlPath, const std::string& v
 
 // 🔹 Crée et démarre une machine virtuelle à partir du fichier XML
 void Core::createVM(const std::string& xmlPath, const std::string& vmName) {
-    virConnectPtr conn = virConnectOpen("qemu:///system");
     if (!conn) {
-        std::cerr << "Erreur: Impossible de se connecter à libvirt\n";
+        std::cerr << "Erreur: Connexion libvirt non établie.\n";
         return;
     }
 
     std::string xmlConfig = loadXMLConfig(xmlPath, vmName);
     if (xmlConfig.empty()) {
         std::cerr << "Erreur: Configuration XML invalide ou vide\n";
-        virConnectClose(conn);
         return;
     }
 
@@ -53,7 +67,6 @@ void Core::createVM(const std::string& xmlPath, const std::string& vmName) {
     std::ofstream outFile(xmlPath);
     if (!outFile) {
         std::cerr << "Erreur: Impossible d'ouvrir le fichier pour écriture: " << xmlPath << "\n";
-        virConnectClose(conn);
         return;
     }
 
@@ -69,6 +82,76 @@ void Core::createVM(const std::string& xmlPath, const std::string& vmName) {
     } else {
         std::cerr << "Erreur: Impossible de créer la VM\n";
     }
+}
 
-    virConnectClose(conn);
+// 🔹 Supprimer la VM
+void Core::deleteVM(const std::string& vmName) {
+    if (!conn) {
+        std::cerr << "Erreur: Connexion libvirt non établie.\n";
+        return;
+    }
+
+    virDomainPtr dom = virDomainLookupByName(conn, vmName.c_str());
+    if (!dom) {
+        std::cerr << "Erreur: VM " << vmName << " introuvable\n";
+        return;
+    }
+
+    // Détruire la VM et libérer la ressource
+    int result = virDomainDestroy(dom);
+    if (result == 0) {
+        std::cout << "VM " << vmName << " détruite avec succès.\n";
+    } else {
+        std::cerr << "Erreur: Impossible de détruire la VM\n";
+    }
+
+    virDomainFree(dom);
+}
+
+// 🔹 Démarrer la VM
+void Core::startVM(const std::string& vmName) {
+    if (!conn) {
+        std::cerr << "Erreur: Connexion libvirt non établie.\n";
+        return;
+    }
+
+    virDomainPtr dom = virDomainLookupByName(conn, vmName.c_str());
+    if (!dom) {
+        std::cerr << "Erreur: VM " << vmName << " introuvable\n";
+        return;
+    }
+
+    // Démarrer la VM
+    int result = virDomainCreate(dom);
+    if (result == 0) {
+        std::cout << "VM " << vmName << " démarrée avec succès.\n";
+    } else {
+        std::cerr << "Erreur: Impossible de démarrer la VM\n";
+    }
+
+    virDomainFree(dom);
+}
+
+// 🔹 Arrêter la VM
+void Core::shutdownVM(const std::string& vmName) {
+    if (!conn) {
+        std::cerr << "Erreur: Connexion libvirt non établie.\n";
+        return;
+    }
+
+    virDomainPtr dom = virDomainLookupByName(conn, vmName.c_str());
+    if (!dom) {
+        std::cerr << "Erreur: VM " << vmName << " introuvable\n";
+        return;
+    }
+
+    // Arrêter la VM
+    int result = virDomainShutdown(dom);
+    if (result == 0) {
+        std::cout << "VM " << vmName << " arrêtée avec succès.\n";
+    } else {
+        std::cerr << "Erreur: Impossible d'arrêter la VM\n";
+    }
+
+    virDomainFree(dom);
 }

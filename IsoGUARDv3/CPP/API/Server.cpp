@@ -2,6 +2,7 @@
 
 Server::Server(int port) : port(port) {
     setup_routes();
+    Core core;
 }
 
 void Server::setup_routes() {
@@ -29,7 +30,7 @@ void Server::handle_create_vm(const httplib::Request& req, httplib::Response& re
         res.set_content("{\"error\": \"Missing VM name\"}", "application/json");
         return;
     }
-
+    core.createVM("vm.xml", "test3");
     std::string response = "{\"message\": \"VM " + vm_name + " created successfully\"}";
     res.set_content(response, "application/json");
 }

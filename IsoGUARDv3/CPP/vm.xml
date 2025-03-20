@@ -1,12 +1,12 @@
 <domain type='kvm'>
   <!-- Nom de la machine virtuelle -->
-  <name>test2</name>
+  <name>test3</name>
 
   <!-- Quantité de mémoire allouée (4 Go) -->
-  <memory unit='MiB'>4096</memory>
+  <memory unit='MiB'>8192</memory>
 
   <!-- Nombre de CPU virtuels alloués -->
-  <vcpu>2</vcpu>
+  <vcpu placement='static'>6</vcpu>
 
   <os>
     <!-- Type de machine virtuelle -->
