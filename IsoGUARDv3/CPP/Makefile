@@ -7,7 +7,7 @@ LDFLAGS = -lvirt
 TARGET = create_vm
 
 # Fichiers sources
-SRCS = main.cpp
+SRCS = main.cpp CORE/core.cpp
 
 # Dossiers d'inclusion
 INCLUDES =

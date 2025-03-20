@@ -1,6 +1,6 @@
 <domain type='kvm'>
   <!-- Nom de la machine virtuelle -->
-  <name>SANDBOX2</name>
+  <name>test2</name>
 
   <!-- Quantité de mémoire allouée (4 Go) -->
   <memory unit='MiB'>4096</memory>
@@ -32,7 +32,7 @@
       <target dev='sda' bus='sata'/>
     </disk>
 
-     <!-- ISO VirtIO -->
+    <!-- ISO VirtIO -->
     <disk type='file' device='cdrom'>
       <driver name='qemu' type='raw'/>
       <source file='/var/lib/libvirt/images/virtio-win.iso'/>
@@ -44,8 +44,8 @@
 
     <!-- Interface réseau connectée au réseau par défaut de libvirt -->
     <interface type='network'>
-      <source network='default'/>
-      <model type='e1000'/> <!-- Carte réseau Intel e1000 pour compatibilité -->
+      <source network='default'/>  <!-- Connexion au réseau par défaut de libvirt (virbr0) -->
+      <model type='e1000'/>  <!-- Carte réseau Intel e1000 pour compatibilité -->
     </interface>
 
     <!-- Périphérique vidéo utilisant VirtIO (meilleure performance graphique) -->
@@ -69,6 +69,5 @@
 
     <!-- Ajout d'un périphérique clavier USB pour une meilleure gestion -->
     <input type='keyboard' bus='usb'/>
-
   </devices>
 </domain>
