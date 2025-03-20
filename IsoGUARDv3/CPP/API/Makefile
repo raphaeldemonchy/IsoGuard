@@ -1,7 +1,8 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude
+CXXFLAGS = -std=c++17 -I.
 LDFLAGS = -lpthread
-SRC = src/Server.cpp main.cpp
+
+SRC = Server.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 TARGET = server_project
 
@@ -15,3 +16,6 @@ $(TARGET): $(OBJ)
 
 clean:
 	rm -f $(OBJ) $(TARGET)
+
+run: all
+	./$(TARGET)
