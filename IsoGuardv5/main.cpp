@@ -1,14 +1,18 @@
 #include "manager/VMManager.hpp"
+#include "server/Server.hpp"
 
 int main() {
-    VMManager manager;
+    // VMManager manager;
 
-    manager.addVM("VM1", VMType::Windows10);
-    manager.listVMs();
-    manager.startVM("VM1");
-    manager.stopVM("VM1");
-    manager.eraseVM("VM1");
-    manager.listVMs();
+    // manager.addVM("VM1", VMType::Windows10);
+    // manager.listVMs();
+    // manager.startVM("VM1");
+    // manager.stopVM("VM1");
+    // manager.eraseVM("VM1");
+    // manager.listVMs();
+
+    auto& server = Server::getInstance(8080); // Port HTTP
+    server.start();
 
     return 0;
 }
